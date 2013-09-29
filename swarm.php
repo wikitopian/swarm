@@ -30,6 +30,20 @@ class Swarm {
 		add_action( 'init', array( &$this, 'initialize' ) );
 	}
 	public function initialize() {
+		$this->maintenance_mode();
+	}
+	public function maintenance_mode() {
+		if (
+			$this->options['maintenance']
+			&& !is_user_logged_in()
+			&& !in_array(
+				$GLOBALS['pagenow'],
+				array( 'wp-login.php', 'wp-register.php' )
+			)
+		) {
+			auth_redirect();
+			exit();
+		}
 	}
 	public static function uninstall() {
 		if ( !current_user_can( 'activate_plugins' ) ) {
