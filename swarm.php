@@ -10,19 +10,26 @@
  * License:     GPL2
  */
 
+require_once 'inc/swarm-options.php'; // settings page
+
 define( 'PREFIX', 'swarm' );
 
 class Swarm {
 	private $options;
 
+	private $swarm_options;
+
 	public function __construct() {
+		$defaults = array(
+			'maintenance' => false,
+		);
+		$this->options = get_option( PREFIX, $defaults );
+
+		$this->swarm_options = new Swarm_Options( PREFIX, $this->options );
+
 		add_action( 'init', array( &$this, 'initialize' ) );
 	}
 	public function initialize() {
-		$defaults = array(
-			'state' => 'live',
-		);
-		$this->options = get_option( PREFIX, $defaults );
 	}
 	public static function uninstall() {
 		if ( !current_user_can( 'activate_plugins' ) ) {
@@ -32,7 +39,6 @@ class Swarm {
 	}
 }
 $swarm = new Swarm();
-
 register_uninstall_hook( __FILE__, array( 'Swarm', 'uninstall' ) );
 
 ?>
