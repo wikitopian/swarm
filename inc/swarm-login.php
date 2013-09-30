@@ -16,6 +16,18 @@ class Swarm_Login {
 		echo '<link rel="stylesheet" id="custom_wp_admin_css"  href="';
 		echo esc_html( plugin_dir_path( __FILE__ ) ) . '../css/swarm-login.css';
 		echo '" type="text/css" media="all" />';
+
+		global $graphene_settings;
+		echo '<style type="text/css">';
+		echo 'body.login { background-color: ';
+		echo sanitize_text_field( $graphene_settings['bg_content_wrapper'] );
+		echo ";}\n";
+		echo 'body.login div#login h1 a {';
+		echo 'background-image: url(';
+		echo esc_url( get_header_image() );
+		echo ');';
+		echo '}';
+		echo '</style>';
 	}
 	public function do_logo_url() {
 		return get_bloginfo( 'url' );
