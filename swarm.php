@@ -11,6 +11,7 @@
  */
 
 require_once 'inc/swarm-options.php'; // settings page
+require_once 'inc/swarm-login.php';   // login page customization
 
 define( 'PREFIX', 'swarm' );
 
@@ -26,6 +27,7 @@ class Swarm {
 		$this->options = get_option( PREFIX, $defaults );
 
 		$this->swarm_options = new Swarm_Options( PREFIX, $this->options );
+		$this->swarm_login   = new Swarm_Login( PREFIX, $this->options );
 
 		add_action( 'init', array( &$this, 'initialize' ) );
 	}
