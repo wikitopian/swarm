@@ -34,6 +34,7 @@ class Swarm_Options {
 <form method="post" action="options.php">
 	<?php settings_fields( $this->prefix ); ?>
 	<table class="form-table">
+
 		<tr valign="top">
 		<th scope="row">Maintenance Mode</th>
 		<td>
@@ -45,6 +46,22 @@ class Swarm_Options {
 				/>
 		</td>
 		</tr>
+
+		<tr valign="top">
+		<th scope="row">Sitewide Message</th>
+		<td>
+			<input
+				type="checkbox"
+				name="<?php echo sanitize_text_field( $this->prefix ); ?>[message_active]"
+				id  ="<?php echo sanitize_text_field( $this->prefix ); ?>[message_active]"
+				value="1"
+				<?php checked( $this->options['message_active'] ) ?>
+				/>
+				<br />
+			<?php wp_editor( $this->options['message'], $this->prefix . '[message]' ); ?>
+		</td>
+		</tr>
+
 	</table>
 	<?php submit_button(); ?>
 </form>

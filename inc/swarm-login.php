@@ -11,6 +11,8 @@ class Swarm_Login {
 		add_action( 'login_enqueue_scripts', array( &$this, 'do_style' ) );
 		add_action( 'login_headerurl', array( &$this, 'do_logo_url' ) );
 		add_action( 'login_headertitle', array( &$this, 'do_logo_title' ) );
+
+		add_action( 'login_message', array( &$this, 'do_message' ) );
 	}
 	public function do_style() {
 		echo '<link rel="stylesheet" id="custom_wp_admin_css"  href="';
@@ -34,6 +36,13 @@ class Swarm_Login {
 	}
 	public function do_logo_title() {
 		return get_bloginfo( 'description' );
+	}
+	public function do_message( $message ) {
+		if ( !empty( $this->options['message_active'] ) && $this->options['message_active'] ) {
+			return '<p class="message">' . $this->options['message'] . '</p>';
+		} else {
+			return $message;
+		}
 	}
 }
 

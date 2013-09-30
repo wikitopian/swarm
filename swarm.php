@@ -19,10 +19,13 @@ class Swarm {
 	private $options;
 
 	private $swarm_options;
+	private $swarm_login;
 
 	public function __construct() {
 		$defaults = array(
 			'maintenance' => false,
+			'message_active' => false,
+			'message' => '',
 		);
 		$this->options = get_option( PREFIX, $defaults );
 
@@ -30,6 +33,7 @@ class Swarm {
 		$this->swarm_login   = new Swarm_Login( PREFIX, $this->options );
 
 		add_action( 'init', array( &$this, 'initialize' ) );
+		add_action( 'graphene_before_content-main', array( &$this, 'do_message' ) );
 	}
 	public function initialize() {
 		$this->maintenance_mode();
@@ -52,6 +56,11 @@ class Swarm {
 			return;
 		}
 		delete_option( PREFIX );
+	}
+	public function do_message() {
+		if ( !empty( $this->options['message_active'] ) && $this->options['message_active'] ) {
+			echo '<div class="message-block">' . $this->options['message'] . '</div>';
+		}
 	}
 }
 $swarm = new Swarm();
