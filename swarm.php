@@ -34,9 +34,14 @@ class Swarm {
 
 		add_action( 'init', array( &$this, 'initialize' ) );
 		add_action( 'graphene_before_content-main', array( &$this, 'do_message' ) );
+		add_action( 'graphene_copyright', array( &$this, 'disable_credit' ) );
 	}
 	public function initialize() {
 		$this->maintenance_mode();
+	}
+	public function disable_credit() {
+		global $graphene_settings;
+		$graphene_settings['disable_credit'] = true;
 	}
 	public function maintenance_mode() {
 		if (
