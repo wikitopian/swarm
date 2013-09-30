@@ -55,7 +55,12 @@ class Swarm_Options {
 				name="<?php echo sanitize_text_field( $this->prefix ); ?>[message_active]"
 				id  ="<?php echo sanitize_text_field( $this->prefix ); ?>[message_active]"
 				value="1"
-				<?php checked( $this->options['message_active'] ) ?>
+				<?php 
+					if ( empty( $this->options['message_active'] ) ) {
+						$this->options['message_active'] = false;
+					}
+					checked( $this->options['message_active'] );
+				?>
 				/>
 				<br />
 			<?php wp_editor( $this->options['message'], $this->prefix . '[message]' ); ?>
