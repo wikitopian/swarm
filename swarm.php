@@ -3,11 +3,11 @@
 /*
  * Plugin Name: Swarm
  * Plugin URI:  http://www.github.com/wikitopian/swarm
- * Description: Maintenance Mode plugin adapted to provide basic admin skin
+ * Description: Graphene-only maintenance mode, login skin, and sitewide alert
  * Version:     2.0
  * Author:      @wikitopian
  * Author URI:  http://www.swarmstrategies.com/matt
- * License:     GPL2
+ * License:     GPLv2
  */
 
 require_once 'inc/swarm-options.php'; // settings page
