@@ -29,8 +29,9 @@ Project Author
 Donations
 ---------
 
-PayPal: `parrott.matt@gmail.com`
-Bitcoin: `13fEAS4B9dTMNXS64Zyq58wCvp4yqnTp6s`
+* PayPal: `parrott.matt@gmail.com`
+
+* Bitcoin: `13fEAS4B9dTMNXS64Zyq58wCvp4yqnTp6s`
 
 License
 -------
