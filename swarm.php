@@ -1,9 +1,9 @@
 <?php
 
 /*
- * Plugin Name: Swarm
+ * Plugin Name: Swarm Tweaks
  * Plugin URI:  http://www.github.com/wikitopian/swarm
- * Description: Graphene-only maintenance mode, login skin, and sitewide alert
+ * Description: Collection of tweaks and improvements
  * Version:     2.0
  * Author:      @wikitopian
  * Author URI:  http://www.swarmstrategies.com/matt
