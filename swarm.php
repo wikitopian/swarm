@@ -33,6 +33,7 @@ class Swarm {
 		$this->swarm_login   = new Swarm_Login( PREFIX, $this->options );
 
 		add_action( 'wp_dashboard_setup', array( &$this, 'remove_db_widgets' ) );
+		add_action( 'do_meta_boxes', array( &$this, 'remove_post_widgets' ) );
 
 		add_action( 'init', array( &$this, 'initialize' ) );
 		add_action( 'graphene_before_content-main', array( &$this, 'do_message' ) );
@@ -44,12 +45,26 @@ class Swarm {
 	public static function remove_db_widgets() {
 		global $wp_meta_boxes;
 
-		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
-		unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
-		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']);
-		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
-		unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
+		unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press'] );
+		unset( $wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links'] );
+		unset( $wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins'] );
+		unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts'] );
+		unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_primary'] );
+		unset( $wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary'] );
+	}
+
+	public static function remove_post_widgets() {
+		global $wp_meta_boxes;
+
+		unset( $wp_meta_boxes['post']['side']['core']['formatdiv'] );
+		unset( $wp_meta_boxes['post']['normal']['high']['graphene_custom_meta'] );
+		unset( $wp_meta_boxes['post']['normal']['core']['postexcerpt'] );
+		unset( $wp_meta_boxes['post']['normal']['core']['trackbacksdiv'] );
+		unset( $wp_meta_boxes['post']['normal']['core']['postcustom'] );
+		unset( $wp_meta_boxes['post']['normal']['core']['commentstatus'] );
+		unset( $wp_meta_boxes['post']['normal']['core']['slugdiv'] );
+		unset( $wp_meta_boxes['post']['normal']['core']['authordiv'] );
+		unset( $wp_meta_boxes['post']['normal']['core']['commentsdiv'] );
 	}
 	public function initialize() {
 		$this->maintenance_mode();
