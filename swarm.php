@@ -38,6 +38,9 @@ class Swarm {
 		add_action( 'graphene_before_content-main', array( &$this, 'do_message' ) );
 		add_action( 'graphene_copyright', array( &$this, 'disable_credit' ) );
 	}
+	public static function remove_image_linking() {
+		update_option( 'image_default_link_type', 'none' );
+	}
 	public static function remove_db_widgets() {
 		global $wp_meta_boxes;
 
@@ -81,6 +84,7 @@ class Swarm {
 	}
 }
 $swarm = new Swarm();
+register_activation_hook( __FILE__, array( 'Swarm', 'remove_image_linking' ) );
 register_uninstall_hook( __FILE__, array( 'Swarm', 'uninstall' ) );
 
 ?>
